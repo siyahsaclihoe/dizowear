@@ -1,23 +1,8 @@
 # Dızo Wear - Git Ignore
 
-# Veritabanı ayarları (hassas bilgiler)
-config/database.php
-
-# Yüklenen dosyalar (kullanıcı görselleri)
+# Yüklenen kullanıcı görselleri (boş klasörü koru)
 uploads/*
 !uploads/.gitkeep
-
-# Cache dosyaları
-cache/*
-!cache/.gitkeep
-!cache/address/.gitkeep
-
-# Kurulum dosyaları (güvenlik)
-install.php
-
-# Log dosyaları
-*.log
-logs/
 
 # OS dosyaları
 .DS_Store
