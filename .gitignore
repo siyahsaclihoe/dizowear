@@ -1,0 +1,51 @@
+# Dızo Wear - Git Ignore
+
+# Veritabanı ayarları (hassas bilgiler)
+config/database.php
+
+# Yüklenen dosyalar (kullanıcı görselleri)
+uploads/*
+!uploads/.gitkeep
+
+# Cache dosyaları
+cache/*
+!cache/.gitkeep
+!cache/address/.gitkeep
+
+# Kurulum dosyaları (güvenlik)
+install.php
+
+# Log dosyaları
+*.log
+logs/
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE dosyaları
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Geçici dosyalar
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Composer (eğer kullanılırsa)
+/vendor/
+composer.lock
+
+# Node (eğer kullanılırsa)
+/node_modules/
+package-lock.json
+
+# Environment dosyaları
+.env
+.env.local
+.env.production

@@ -1,0 +1,68 @@
+# Dızo Wear - Apache Configuration
+# SEO-friendly URL rewriting
+
+# Enable mod_rewrite
+RewriteEngine On
+
+# Set base directory
+RewriteBase /dizowear/
+
+# DirectoryIndex
+DirectoryIndex public/index.php index.php
+
+# Allow access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Allow install.php
+RewriteRule ^install\.php$ - [L]
+
+# Allow admin directory
+RewriteRule ^admin - [L]
+
+# Allow assets
+RewriteRule ^assets - [L]
+
+# Allow uploads
+RewriteRule ^uploads - [L]
+
+# Route everything else to public/index.php
+RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]
+
+# Block access to sensitive files (except from internal)
+<FilesMatch "\.(htpasswd|ini|log|sh|sql|env)$">
+    Require all denied
+</FilesMatch>
+
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Cache static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
